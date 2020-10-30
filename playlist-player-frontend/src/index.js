@@ -1,20 +1,15 @@
-const BASE_URL = "http://localhost:3000"
-const TRAINERS_URL = `${BASE_URL}/tracks`
+const BASE_URL = "https://api.spotify.com/v1/"
+const TRACKS_URL = `${BASE_URL}/tracks/{id}`
 
-document.addEventListener('DOMContentLoaded', () => {
-    getTracks()
-  })
-  
-  const main = () => {
-    return document.querySelector('main')
-  }
-  
-  const getTrainers = () => {
-    fetch('http://localhost:3000/tracks')
-    .then(r => r.json())
-    .then(tracks => renderTracks(tracks))
-  }
-
-  const renderTracks = (tracksData) => {
-    tracksData.forEach(track => document.log(track))
-  }
+fetch('https://api.spotify.com/v1/tracks/{id}', {
+    method: 'GET', headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + accessToken
+        }
+    })
+        .then((response) => {
+        console.log(response.json().then(
+        (data) => { console.log(data) }
+    ));
+});
