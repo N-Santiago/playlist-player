@@ -1,0 +1,10 @@
+.header {
+    padding: 10px;
+    text-align: left;
+    background: #02060e;
+    background-image: url("../playlist-player-frontend/vinyl-records.jpg");
+    color: white;
+    font-size: 15px;
+    font-family: "Permanent Marker";
+
+}
