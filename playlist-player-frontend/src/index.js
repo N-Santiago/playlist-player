@@ -1,7 +1,7 @@
-const BASE_URL = "https://api.spotify.com/v1/"
+const BASE_URL = "https://localhost:3000/v1/"
 const TRACKS_URL = `${BASE_URL}/tracks/{id}`
 
-fetch('https://api.spotify.com/v1/tracks/{id}', {
+fetch('https://localhost:3000/v1/tracks/{id}', {
     method: 'GET', headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -13,3 +13,5 @@ fetch('https://api.spotify.com/v1/tracks/{id}', {
         (data) => { console.log(data) }
     ));
 });
+
+    
