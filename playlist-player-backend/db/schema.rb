@@ -13,10 +13,11 @@
 ActiveRecord::Schema.define(version: 2020_10_29_023311) do
 
   create_table "tracks", force: :cascade do |t|
-    t.string "name"
+    t.string "title"
     t.string "artist"
+    t.string "genre"
     t.integer "artist_id"
-    t.string "spotify_id"
+    t.integer "genre_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

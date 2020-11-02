@@ -6,7 +6,7 @@ class Api::V1::TracksController < ApplicationController
     end 
 
     def show
-        track = track.find_by(spotify_id: params[:spotify_id])
+        track = track.find_by(id: params[:id])
         render json: track
     end 
     
