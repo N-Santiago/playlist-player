@@ -79,7 +79,7 @@ function createTrack() {
     .then(track => {
     renderTrackCard(track)
     // attachClickToLinks()
-    clearConcertForm()
+    clearTrackForm()
     })
 }
 
