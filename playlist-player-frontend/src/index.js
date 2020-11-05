@@ -1,4 +1,4 @@
-const BASE_URL = 'https://localhost:3000'
+const BASE_URL = 'http://localhost:3000'
 const TRACKS_URL = `${BASE_URL}/api/v1/tracks/`
 
 window.addEventListener('load', () => {
@@ -69,15 +69,15 @@ function createTrack() {
     }
     fetch(BASE_URL+"/api/v1/tracks", {
         method: "POST",
-        body: JSON.stringify(track),
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
-        }
+        },
+        body: JSON.stringify(track)
     }) 
     .then(resp => resp.json())
     .then(track => {
-    renderTrackCard(track)
+    console.log(track)
     // attachClickToLinks()
     clearTrackForm()
     })
