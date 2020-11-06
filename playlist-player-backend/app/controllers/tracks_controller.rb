@@ -1,4 +1,5 @@
-class Api::V1::TracksController < ApplicationController
+require "pry"
+class TracksController < ApplicationController
 
     def index
         tracks = Track.all
@@ -11,7 +12,7 @@ class Api::V1::TracksController < ApplicationController
     end 
 
     def create 
-        track = Track.new(track_params)
+        track = Track.new(title: params[:title], artist: params[:artist], genre: params[:genre])
         if track.save
             render json: track
           else
@@ -19,10 +20,11 @@ class Api::V1::TracksController < ApplicationController
         end
     end 
 
-
-    def track_params
-        params.require(:track).permit(:title, :artist, :genre)
-    end
-
+    # private
     
-end
+    #     def track_params
+    #         params.require(:track).permit(:title, :artist, :genre)
+    #     end
+
+end 
+

@@ -43,12 +43,12 @@ function addTrackForm() {
     let html = `
         <form>
             <label>Title:</label>
-            <input type="text" id="title">
+            <input type='text' id='title'>
             <label>Artist:</label>
-            <input type="text" id="artist">
+            <input type='text' id='artist'>
             <label>Genre:</label>
-            <input type="text" id="genre">
-            <input type="submit">
+            <input type='text' id='genre'>
+            <input type='submit'>
         </form>
     `
     trackForm.innerHTML = html 
@@ -63,9 +63,9 @@ function clearTrackForm() {
 function createTrack() {
     event.preventDefault()
     const track = {
-        Title: document.getElementById('title').value,
-        Artist: document.getElementById('artist').value,
-        Genre: document.getElementById('genre').value,
+        title: document.getElementById('title').value,
+        artist: document.getElementById('artist').value,
+        genre: document.getElementById('genre').value,
     }
     fetch(BASE_URL+"/api/v1/tracks", {
         method: "POST",
@@ -77,7 +77,7 @@ function createTrack() {
     }) 
     .then(resp => resp.json())
     .then(track => {
-    console.log(track)
+    renderTrackCard(track)
     // attachClickToLinks()
     clearTrackForm()
     })
