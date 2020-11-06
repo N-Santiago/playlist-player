@@ -1,5 +1,5 @@
 const BASE_URL = 'http://localhost:3000'
-const TRACKS_URL = `${BASE_URL}/api/v1/tracks/`
+const TRACKS_URL = `${BASE_URL}/tracks/`
 
 window.addEventListener('load', () => {
     addTrackForm()
@@ -19,7 +19,7 @@ const main = () => {
 // }
 
 const getTracks = () => {
-    fetch('http://localhost:3000/api/v1/tracks')
+    fetch('http://localhost:3000/tracks')
     .then(r => r.json())
     .then(data => renderTracks(data))
 }
@@ -67,7 +67,7 @@ function createTrack() {
         artist: document.getElementById('artist').value,
         genre: document.getElementById('genre').value,
     }
-    fetch(BASE_URL+"/api/v1/tracks", {
+    fetch(BASE_URL+"/tracks", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',

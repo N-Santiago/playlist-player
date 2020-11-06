@@ -7,7 +7,7 @@ class TracksController < ApplicationController
     end 
 
     def show
-        track = track.find_by(id: params[:id])
+        track = Track.find_by(id: params[:id])
         render json: track
     end 
 
