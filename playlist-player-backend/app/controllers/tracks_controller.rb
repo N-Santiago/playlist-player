@@ -20,6 +20,11 @@ class TracksController < ApplicationController
         end
     end 
 
+    def destroy
+        track = Track.find_by(id: params[:id])
+        track.destroy
+    end 
+
     # private
     
     #     def track_params

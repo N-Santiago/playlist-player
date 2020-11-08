@@ -16,6 +16,7 @@ const main = () => {
 //         player.addEventListener('click', getTracks)
 //     })
 //     document.querySelectorAll('#add-track').forEach(track => track.addEventListener('click', addTrackForm))
+//     document.querySelectorAll('#delete-track').forEach(track => track.addEventListener('click', removeTrackButton))             
 // }
 
 const getTracks = () => {
@@ -33,9 +34,10 @@ const renderTrackCard = (trackObj) => {
     trackCard.className = "card"
     trackCard.dataset.id = trackObj.id
     trackCard.innerHTML = `
-      <p>${trackObj.title} - ${trackObj.artist} - Genre: ${trackObj.genre}</p>
+      <p>${trackObj.title} - ${trackObj.artist} - Genre: ${trackObj.genre} <button class="delete-btn" data-action="delete" id="delete-btn"> X </button></p>
     `
     main().appendChild(trackCard)
+    document.querySelector('div').addEventListener('click', removeTrack)
 }
 
 function addTrackForm() {
@@ -83,4 +85,16 @@ function createTrack() {
     })
 }
 
-    
+function removeTrack() {
+    event.preventDefault()
+    clearTrackForm()
+    let id = event.target.dataset.id 
+    fetch(BASE_URL+`/tracks/${id}`, {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    })
+    .then(event.target.parentElement.remove())
+}    
