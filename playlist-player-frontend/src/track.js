@@ -7,7 +7,7 @@ class Track {
     }
 }
 
-renderTrack() {
+function renderTrack() {
     return `
     <p>${this.title} - ${this.artist} - Genre: ${this.genre} <button class="delete-btn" data-action="delete" id="delete-btn"> X </button></p>`
 } 
