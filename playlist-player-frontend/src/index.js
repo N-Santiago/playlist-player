@@ -3,7 +3,7 @@ const TRACKS_URL = `${BASE_URL}/tracks/`
 
 window.addEventListener('load', () => {
     addTrackForm()
-    getTracks()
+    renderTrack()
 })
 
 const main = () => {
@@ -19,29 +19,29 @@ const main = () => {
 //     document.querySelectorAll('#delete-track').forEach(track => track.addEventListener('click', removeTrackButton))             
 // }
 
-const getTracks = () => {
-    fetch('http://localhost:3000/tracks')
-    .then(r => r.json())
-    .then(data => renderTracks(data))
-}
+// const getTracks = () => {
+//     fetch('http://localhost:3000/tracks')
+//     .then(r => r.json())
+//     .then(data => renderTrack(data))
+// }
 
-const renderTracks = (tracksData) => {
-    tracksData.forEach(track => renderTrackCard(track))
-}
+// const renderTracks = (tracksData) => {
+//     tracksData.forEach(track => renderTrackCard(track))
+// }
 
-function renderTrackCard(trackObj) {
-    let trackCard = document.createElement('div')
-    trackCard.className = "card"
-    trackCard.dataset.id = trackObj.id
-    trackCard.innerHTML = `
-      <p>${trackObj.title} - ${trackObj.artist} - Genre: ${trackObj.genre} <button class="delete-btn" data-action="delete" id="delete-btn"> X </button></p>
-    `
-    main().appendChild(trackCard)
-    // document.querySelector('btn.delete-btn').addEventListener('click', (e) => {
-    //     e.preventDefault()
-    //     // removeTrack(e)
-    // })
-}
+// function renderTrackCard(trackObj) {
+//     let trackCard = document.createElement('div')
+//     trackCard.className = "card"
+//     trackCard.dataset.id = trackObj.id
+//     trackCard.innerHTML = `
+//       <p>${trackObj.title} - ${trackObj.artist} - Genre: ${trackObj.genre} <button class="delete-btn" data-action="delete" id="delete-btn"> X </button></p>
+//     `
+//     main().appendChild(trackCard)
+//     // document.querySelector('btn.delete-btn').addEventListener('click', (e) => {
+//     //     e.preventDefault()
+//     //     // removeTrack(e)
+//     // })
+// }
 
 function addTrackForm() {
     let trackForm = document.getElementById('track-form')
@@ -83,10 +83,12 @@ function createTrack() {
     }) 
     .then(resp => resp.json())
     .then(track => {
-    renderTrackCard(track)
+        let t = new Track(track)
+        let tracksOl = document.querySelector('track-container')
+        tracksOl.innerHTML += t.renderTrack()
     // attachClickToLinks()
     clearTrackForm()
-    })
+    })    
 }
 
 // function removeTrack() {
