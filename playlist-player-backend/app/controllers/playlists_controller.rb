@@ -1,6 +1,7 @@
+require 'pry'
 class PlaylistsController < ApplicationController
 
-    def index 
+    def index
         playlists = Playlist.all
         render json: playlists 
     end

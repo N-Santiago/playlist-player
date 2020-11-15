@@ -1,51 +1,32 @@
 const BASE_URL = 'http://localhost:3000'
 const TRACKS_URL = `${BASE_URL}/tracks/`
+const PLAYLISTS_URL = `${BASE_URL}/playlists/`
 
 window.addEventListener('load', () => {
-    addTrackForm()
-    renderTrack()
+    getPlaylists()
+    // addTrackForm()
+    // renderTrack()
 })
 
 const main = () => {
     return document.querySelector('main')
 }
 
-// function clickToLinks() {
-//     let playerLinks = document.querySelectorAll('.card-header a')
-//     playerLinks.forEach(track => {
-//         player.addEventListener('click', getTracks)
-//     })
-//     document.querySelectorAll('#add-track').forEach(track => track.addEventListener('click', addTrackForm))
-//     document.querySelectorAll('#delete-track').forEach(track => track.addEventListener('click', removeTrackButton))             
-// }
-
-// const getTracks = () => {
-//     fetch('http://localhost:3000/tracks')
-//     .then(r => r.json())
-//     .then(data => renderTrack(data))
-// }
-
-// const renderTracks = (tracksData) => {
-//     tracksData.forEach(track => renderTrackCard(track))
-// }
-
-// function renderTrackCard(trackObj) {
-//     let trackCard = document.createElement('div')
-//     trackCard.className = "card"
-//     trackCard.dataset.id = trackObj.id
-//     trackCard.innerHTML = `
-//       <p>${trackObj.title} - ${trackObj.artist} - Genre: ${trackObj.genre} <button class="delete-btn" data-action="delete" id="delete-btn"> X </button></p>
-//     `
-//     main().appendChild(trackCard)
-//     // document.querySelector('btn.delete-btn').addEventListener('click', (e) => {
-//     //     e.preventDefault()
-//     //     // removeTrack(e)
-//     // })
-// }
+function getPlaylists() {
+    fetch(BASE_URL+"/playlists")
+    .then(resp => resp.json())
+    .then(playlist => {
+        let p = new Playlist(playlist)
+        main.innerHTML += p.renderPlaylist()
+        p.renderTracks()
+    })
+    // attachClickToLinks()
+}
 
 function addTrackForm() {
     let trackForm = document.getElementById('track-form')
     let html = `
+        <h3>Add Song</h3>
         <form>
             <label>Title:</label>
             <input type='text' id='title'>

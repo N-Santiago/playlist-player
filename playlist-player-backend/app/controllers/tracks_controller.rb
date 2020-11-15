@@ -21,7 +21,6 @@ class TracksController < ApplicationController
     end 
 
     def destroy
-        binding.pry
         track = Track.find_by(id: params[:id])
         track.destroy
     end 
