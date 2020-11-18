@@ -7,8 +7,8 @@ class Playlist {
         // Playlist.array.push(this)
     }
 
-    renderPlaylist() {
-        return `<div class="playlist-card id="playlist-${this.id}">
+    renderPlaylist() { 
+        return `<div class="playlist-container" id="playlist-${this.id}">
                     <div class="playlist-header">
                         <a href='#' data-id='${this.id}' class="my-0 font-weight-normal">${this.name}</a><br>
                         <a href='#' data-id='${this.id}' class="my-0 font-weight-normal">${this.description}</a><br>
@@ -21,9 +21,9 @@ class Playlist {
     }
 
     renderTracks() {
-        let trackList = document.querySelector(`#playlist-${this.id} #tracks-list`) 
+        // let trackList = document.querySelector(`#playlist-${this.id} #tracks-list`) 
         this.tracks.forEach(track => {
-            trackList.innerHTML += `
+            main.innerHTML += `
             <li id="track-${track.id}">
             <small>${this.title} - ${this.artist} - Genre: ${this.genre}</small><button class="delete-btn" data-action="delete" id="delete-btn"> X </button></li>`
         })

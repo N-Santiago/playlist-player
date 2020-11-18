@@ -13,15 +13,41 @@ const main = () => {
 }
 
 function getPlaylists() {
+    // clearForm()
+    // let playlistCard = document.createElement('playlist-container')
     fetch(BASE_URL+"/playlists")
     .then(resp => resp.json())
-    .then(playlist => {
-        let p = new Playlist(playlist)
-        main.innerHTML += p.renderPlaylist()
-        p.renderTracks()
+    .then(playlists => {
+        playlists.map(playlist => { 
+            // console.log(playlist) 
+            debugger 
+            let p = new Playlist(playlist)
+            main.innerHTML += p.renderPlaylist() 
+            p.renderTracks()
+        })
     })
     // attachClickToLinks()
 }
+
+// function displayPlaylist(){
+//     // clearForm()
+//     let id = event.target.dataset.id 
+//     main.innerHTML = ""
+//     fetch(PLAYLISTS_URL+id)
+//     .then(resp => resp.json())
+//     .then(playlist => {
+//         main.innerHTML += `<div class="playlist-container id="playlist-${playlist.id}">
+//         <div class="playlist-header">
+//             <a href='#' data-id='${playlist.id}' class="my-0 font-weight-normal">${playlist.name}</a><br>
+//             <a href='#' data-id='${playlist.id}' class="my-0 font-weight-normal">${playlist.description}</a><br>
+//             <button class="playlist-btn" id="add-track" data-id="${playlist.id}">Add Track</button>
+//         </div>    
+//         <div class="playlist-body">
+//             <ul id="tracks-list" class="tracks-list"></ul>
+//         </div>
+//     </div>`                        
+//     })
+// }
 
 function addTrackForm() {
     let trackForm = document.getElementById('track-form')
