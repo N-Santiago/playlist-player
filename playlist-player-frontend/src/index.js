@@ -1,6 +1,7 @@
 const BASE_URL = 'http://localhost:3000'
 const TRACKS_URL = `${BASE_URL}/tracks/`
 const PLAYLISTS_URL = `${BASE_URL}/playlists/`
+const playlistCard = document.createElement('playlist-container')
 
 window.addEventListener('load', () => {
     getPlaylists()
@@ -24,7 +25,6 @@ const main = () => {
 
 function getPlaylists() {
     // clearForm()
-    // let playlistCard = document.createElement('playlist-container')
     fetch(BASE_URL+"/playlists")
     .then(resp => resp.json())
     .then(playlists => {
