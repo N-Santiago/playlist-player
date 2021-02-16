@@ -1,12 +1,12 @@
 const BASE_URL = 'http://localhost:3000'
 const TRACKS_URL = `${BASE_URL}/tracks/`
 const PLAYLISTS_URL = `${BASE_URL}/playlists/`
-const playlistCard = document.createElement('playlist-container')
 
 window.addEventListener('load', () => {
     getPlaylists()
     addTrackForm()
-    // renderTrack()
+    let all = Playlist.all;
+    all.forEach(val => createOption(val))
 })
 
 const main = () => {
@@ -29,7 +29,6 @@ function getPlaylists() {
     .then(resp => resp.json())
     .then(playlists => {
         playlists.map(playlist => { 
-            // console.log(playlist) 
             let p = new Playlist(playlist)
             main().innerHTML += p.renderPlaylist() 
             p.renderTracks()
@@ -49,13 +48,25 @@ function addTrackForm() {
             <input type='text' id='artist'>
             <label>Genre:</label>
             <input type='text' id='genre'>
+            <label>Playlist:</label>
+            <select id='menu' class='playlist-dropdown'>
+            </select>
             <input type='submit'>
         </form>
     `
-    trackForm.innerHTML = html 
-
+    trackForm.innerHTML = html
+    // document.getElementById('menu').addEventListener('click', openMenu)
     document.querySelector('form').addEventListener('submit', createTrack)
 }
+
+function createOption(val) {
+    let option = document.createElement("option");
+    let select = document.getElementsByClassName("playlist-dropdown")[0];
+    option.value = val.name; 
+    option.text = val.name.charAt(0).toUpperCase() + val.name.slice(1);
+    select.appendChild(option);
+}
+    
 
 function clearTrackForm() {
     let trackFormDiv = document.getElementById('track-form')
@@ -101,3 +112,4 @@ function createTrack() {
     // })
     // .then(e.target.parentElement.remove())
 // }   
+
